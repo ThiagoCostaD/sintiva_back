@@ -1,13 +1,9 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Cadastro
+from .serializer import CadastroSerializer
 
 
-class CadastroView(APIView):
-    def get(self, request):
-        cadastros = Cadastro.objects.all()
-        return render(
-            request, "cadastro/cadastro_list.html",
-            {"cadastros": cadastros}
-        )
+class CadastroView(ModelViewSet):
+    queryset = Cadastro.objects.all()
+    serializer_class = CadastroSerializer
