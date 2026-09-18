@@ -1,3 +1,8 @@
-from django.test import TestCase
+from pytest import mark
 
-# Create your tests here.
+
+class TestCadastroView:
+    @mark.django_db
+    def test_cadastro_view(self, client):
+        response = client.get('/cadastro/')
+        assert response.status_code == 200
